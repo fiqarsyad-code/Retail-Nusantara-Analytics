@@ -65,9 +65,17 @@ st.divider()
 st.subheader("📈 Sales Trend")
 
 
-data["Date_Time"] = pd.to_datetime(
-    data["Date_Time"])
+data["Date_Time"] = (
+    data["Date_Time"]
+    .astype(str)
+    .str.replace(".", ":", regex=False)
+)
 
+
+data["Date_Time"] = pd.to_datetime(
+    data["Date_Time"],
+    dayfirst=True
+)
 
 sales_trend = (
     data
