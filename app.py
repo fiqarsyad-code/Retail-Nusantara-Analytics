@@ -57,7 +57,7 @@ with col4:
     )
 
 # ===============================
-# SALES TREND ANALYSIS
+# SALES TREND
 # ===============================
 
 st.divider()
@@ -65,23 +65,10 @@ st.divider()
 st.subheader("📈 Sales Trend")
 
 
-data["Date_Time"] = (
-    data["Date_Time"]
-    .astype(str)
-    .str.replace(".", ":", regex=False)
-)
-
-
-data["Date_Time"] = pd.to_datetime(
-    data["Date_Time"],
-    dayfirst=True
-)
-
 sales_trend = (
     data
-    .groupby(
-        data["Date_Time"].dt.hour
-    )["Total_Price"]
+    .groupby(data["Date_Time"].dt.hour)
+    ["Total_Price"]
     .sum()
     .reset_index()
 )
@@ -95,15 +82,15 @@ sales_trend.columns = [
 
 fig = px.line(
     sales_trend,
-    x="Date_Time",
-    y="Total_Price",
+    x="Hour",
+    y="Revenue",
     markers=True,
-    title="Revenue Trend Over Time"
+    title="Revenue Trend by Hour"
 )
 
 
 fig.update_layout(
-    xaxis_title="Date",
+    xaxis_title="Hour",
     yaxis_title="Revenue (Rp)"
 )
 
@@ -112,7 +99,6 @@ st.plotly_chart(
     fig,
     use_container_width=True
 )
-
 st.success(
     "File Excel berhasil dibaca"
 )
