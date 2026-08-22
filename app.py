@@ -7,7 +7,7 @@ st.title(
 )
 
 
-FILE = "Business_Analytics_PT_Retail_Nusantara..xlxs"
+FILE = "Business_Analytics_PT_Retail_Nusantara..xlsx"
 
 
 data = pd.read_excel(FILE)
