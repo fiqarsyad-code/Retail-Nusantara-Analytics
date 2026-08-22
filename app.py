@@ -56,14 +56,6 @@ with col4:
         f"Rp {average_basket:,.0f}"
     )
 
-st.success(
-    "File Excel berhasil dibaca"
-)
-
-
-st.dataframe(
-    data.head()
-)
 # ===============================
 # SALES TREND ANALYSIS
 # ===============================
@@ -104,4 +96,13 @@ fig.update_layout(
 st.plotly_chart(
     fig,
     use_container_width=True
+)
+
+st.success(
+    "File Excel berhasil dibaca"
+)
+
+
+st.dataframe(
+    data.head()
 )
