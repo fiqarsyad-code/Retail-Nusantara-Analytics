@@ -1,11 +1,23 @@
 import streamlit as st
+import pandas as pd
 
-st.title("PT Retail Nusantara Analytics")
 
-st.success(
-    "Dashboard berhasil dijalankan!"
+st.title(
+    "PT Retail Nusantara Analytics"
 )
 
-st.write(
-    "Testing Streamlit Deployment"
+
+FILE = "Business_Analytics_PT_Retail_Nusantara.xlsx"
+
+
+data = pd.read_excel(FILE)
+
+
+st.success(
+    "File Excel berhasil dibaca"
+)
+
+
+st.dataframe(
+    data.head()
 )
