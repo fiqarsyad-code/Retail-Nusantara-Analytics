@@ -64,3 +64,44 @@ st.success(
 st.dataframe(
     data.head()
 )
+# ===============================
+# SALES TREND ANALYSIS
+# ===============================
+
+st.divider()
+
+st.subheader("📈 Sales Trend")
+
+
+data["Date_Time"] = pd.to_datetime(
+    data["Date_Time"]
+)
+
+
+sales_trend = (
+    data
+    .groupby("Date_Time")["Total_Price"]
+    .sum()
+    .reset_index()
+)
+
+
+fig = px.line(
+    sales_trend,
+    x="Date_Time",
+    y="Total_Price",
+    markers=True,
+    title="Revenue Trend Over Time"
+)
+
+
+fig.update_layout(
+    xaxis_title="Date",
+    yaxis_title="Revenue (Rp)"
+)
+
+
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
