@@ -79,10 +79,18 @@ data["Date_Time"] = pd.to_datetime(
 
 sales_trend = (
     data
-    .groupby("Date_Time")["Total_Price"]
+    .groupby(
+        data["Date_Time"].dt.hour
+    )["Total_Price"]
     .sum()
     .reset_index()
 )
+
+
+sales_trend.columns = [
+    "Hour",
+    "Revenue"
+]
 
 
 fig = px.line(
